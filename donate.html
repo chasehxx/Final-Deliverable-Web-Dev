@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> PNW Forestry </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style/don.css">
+</head>
+
+<body>
+ <header>
+  <img src="img/m3logo.jpg" alt="tree Logo" class="logo">
+  <h1> Pacific Northwest Forestry </h1>
+ </header>
+ <nav class="navbox">
+  <ul>
+   <li><a href="index.html">Home</a></li>
+   <li><a href="plants.html">Guessing Game</a></li>
+   <li class="ddown">
+    <span class="drop">Services
+     <i class="fa fa-caret-down"></i>
+    </span>
+    <div class="dcontent">
+     <a href="services.html">Hire a Team</a>
+     <a href="services.html">Volunteer</a>
+     <a href="services.html">Land Survey</a>
+    </div>
+   </li>
+   <li><a class="don" href="donate.html"><button>Donate</button></a></li>
+  </ul>
+ </nav>
+
+<div class="imgbox">
+  <div class="mainp">
+   <p> Want to Show your Support?<br>
+      Choose a donation and submit a request! </p>
+   <form id="survey" action="/resultpage.php" method="post">
+  <label for="fname">First name:</label><br>
+   <input type="text" id="fname" name="fname" required>
+   <div id="fError" class="error"></div><br>
+
+  <label for="lname">Last name:</label><br>
+   <input type="text" id="lname" name="lname" required>
+   <div id="lError" class="error"></div><br>
+
+  <label for="city">Donor's City:</label><br>
+   <input type="text" id="city" name="city" required>
+   <div id="cError" class="error"></div><br>
+
+  <label for="email">Email:</label><br>
+   <input type="email" id="email" name="email" required><br>
+
+  <h2>Donation Amount</h2>
+  <input type="checkbox" id="donation" name="donation" value="10">
+   <label for="donation"> $10 </label><br>
+  <input type="checkbox" id="donation1" name="donation" value="20">
+   <label for="donation1"> $20 </label><br>
+  <input type="checkbox" id="donation2" name="donation" value="50">
+   <label for="donation2"> $50 </label><br>
+  <input type="checkbox" id="donation3" name="donation" value="Custom">
+  <label for="donation3"> Custom </label><br><br>
+
+  <input type="submit" value="Donate">
+</form>
+
+<script>
+document.getElementById("survey").addEventListener("submit", function(event) {
+  let isValid = true;
+
+  function checkCapitalization(fieldId, errorId) {
+    const field = document.getElementById(fieldId);
+    const errorDiv = document.getElementById(errorId);
+    errorDiv.textContent = "";
+
+    const value = field.value.trim();
+    if (value.length > 0) {
+      const firstChar = value.charAt(0);
+      if (firstChar !== firstChar.toUpperCase()) {
+        errorDiv.textContent = "First letter must be capitalized.";
+        isValid = false;
+      }
+    }
+  }
+
+  checkCapitalization("fname", "fError");
+  checkCapitalization("lname", "lError");
+  checkCapitalization("city", "cError");
+
+  if (!isValid) {
+    event.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
